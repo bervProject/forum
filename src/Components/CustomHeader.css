@@ -1,0 +1,9 @@
+.logo {
+    float: left;
+    width: 60px;
+    height: 80%;
+    margin: 6px 24px 16px 0;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-image: url('../redis.svg');
+}
