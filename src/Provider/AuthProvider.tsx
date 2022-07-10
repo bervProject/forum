@@ -4,6 +4,8 @@ import { customAuthProvider } from "../auth";
 
 interface AuthContextType {
   user: any;
+  getAccessToken(): string | null;
+  setUserData(user: any): void;
   signin: ({
     email,
     password,
@@ -39,16 +41,28 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   let signout = () => {
     return new Promise<any>((resolve, reject) => {
-      customAuthProvider.signout().then(() => {
-        setUser(null);
-        resolve(null);
-      }).catch(err => {
-        reject(err);
-      });
+      customAuthProvider
+        .signout()
+        .then(() => {
+          setUser(null);
+          resolve(null);
+        })
+        .catch((err) => {
+          reject(err);
+        });
     });
   };
 
-  let value = { user, signin, signout };
+  let getAccessToken = () => {
+    return window.localStorage.getItem("accessToken");
+  };
+
+  let setUserData = (user: any) => {
+    window.localStorage.setItem("user", JSON.stringify(user));
+    setUser(user);
+  };
+
+  let value = { user, getAccessToken, setUserData, signin, signout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

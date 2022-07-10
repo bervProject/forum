@@ -1,4 +1,12 @@
-import { Button, Card, Form, Input, notification, Space, Typography } from "antd";
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  notification,
+  Space,
+  Typography,
+} from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../Provider/AuthProvider";
@@ -21,10 +29,10 @@ const Login = () => {
       .catch((err) => {
         console.error(err);
         notification.open({
-          message: 'Login Failed',
-          description: 'Login Failed',
-          type: 'error',
-        })
+          message: "Login Failed",
+          description: "Login Failed",
+          type: "error",
+        });
       })
       .finally(() => {
         setIsLoading(false);

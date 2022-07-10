@@ -6,6 +6,9 @@ import "./App.css";
 import { AuthProvider, RequireAuth } from "./Provider/AuthProvider";
 import Home from "./Pages/Home";
 import Login from "./Pages/Login";
+import NewThread from "./Pages/NewThread";
+import DetailThread from "./Pages/DetailThread";
+import Profile from "./Pages/Profile";
 const { Title } = Typography;
 
 function App() {
@@ -18,10 +21,34 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route
-              path="/threads"
+              path="/thread"
               element={
                 <RequireAuth>
-                  <Title>Threads</Title>
+                  <NewThread />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/thread/:threadId"
+              element={
+                <RequireAuth>
+                  <DetailThread />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/me/thread"
+              element={
+                <RequireAuth>
+                  <Title>My Threads</Title>
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/me"
+              element={
+                <RequireAuth>
+                  <Profile />
                 </RequireAuth>
               }
             />

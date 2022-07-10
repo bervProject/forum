@@ -1,5 +1,5 @@
-import React from 'react';
-import { threadService } from '../services';
+import React from "react";
+import { threadService } from "../services";
 
 interface ThreadContextType {
   threads: any;
@@ -12,21 +12,26 @@ function ThreadProvider({ children }: { children: React.ReactNode }) {
   let [threads, setThreads] = React.useState<any>([]);
 
   let getThreads = () => {
-    return threadService.get('/threads').then((response: any) => {
-      setThreads(response.data);
-    }).catch(err => {
+    return threadService
+      .get("/threads")
+      .then((response: any) => {
+        setThreads(response.data);
+      })
+      .catch((err) => {
         console.error(err);
         setThreads([]);
-    });
+      });
   };
 
   let value = { threads, getThreads };
 
-  return <ThreadContext.Provider value={value}>{children}</ThreadContext.Provider>;
+  return (
+    <ThreadContext.Provider value={value}>{children}</ThreadContext.Provider>
+  );
 }
 
 function useThread() {
   return React.useContext(ThreadContext);
 }
 
-export { ThreadProvider, useThread }
+export { ThreadProvider, useThread };
