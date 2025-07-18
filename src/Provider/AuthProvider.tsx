@@ -71,7 +71,7 @@ function useAuth() {
   return React.useContext(AuthContext);
 }
 
-function RequireAuth({ children }: { children: JSX.Element }) {
+function RequireAuth({ children }: { children: React.JSX.Element }) {
   let auth = useAuth();
   let location = useLocation();
 
