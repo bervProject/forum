@@ -17,7 +17,7 @@ const { Title } = Typography;
 const Login = () => {
   const auth = useAuth();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [api, contextHolder] = notification.useNotification();
+  const [api,] = notification.useNotification();
   const onFinish = (values: any) => {
     console.log("Form values:", values);
     setIsLoading(true);
