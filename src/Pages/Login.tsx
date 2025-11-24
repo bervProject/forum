@@ -17,7 +17,7 @@ const { Title } = Typography;
 const Login = () => {
   const auth = useAuth();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const [api,] = notification.useNotification();
   const onFinish = (values: any) => {
     console.log("Form values:", values);
     setIsLoading(true);
@@ -28,10 +28,9 @@ const Login = () => {
       })
       .catch((err) => {
         console.error(err);
-        notification.open({
-          message: "Login Failed",
-          description: "Login Failed",
-          type: "error",
+        api.error({
+          title: "Login Failed",
+          description: "Login Failed"
         });
       })
       .finally(() => {
